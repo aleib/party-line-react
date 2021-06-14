@@ -15,6 +15,7 @@ const Counter = () => {
      * how long they have left in the room.
      */
     clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     interval = setInterval(() => {
       let secs = Math.round((roomExp - Date.now()) / 1000);
       const value = Math.floor(secs / 60) + ":" + ("0" + (secs % 60)).slice(-2);

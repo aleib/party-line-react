@@ -230,7 +230,7 @@ export const CallProvider = ({ children }) => {
        */
       callFrame.setUserName(`${display}_${newAccountType}`);
     },
-    [callFrame]
+    [callFrame, displayName]
   );
 
   const handleMute = useCallback(
@@ -391,7 +391,7 @@ export const CallProvider = ({ children }) => {
       callFrame.off("track-started", playTrack);
       callFrame.off("track-stopped", destroyTrack);
     };
-  }, [callFrame, participants, destroyTrack, playTrack, updateUsername]);
+  }, [callFrame, participants, destroyTrack, playTrack, updateUsername, joinRoom, room?.name, leaveCall]);
 
   /**
    * Update participants for any event that happens
