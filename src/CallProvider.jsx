@@ -169,11 +169,11 @@ export const CallProvider = ({ children }) => {
     );
   };
 
-  const getAccountType = (username) => {
+  const getAccountType = useCallback((username) => {
     if (!username) return;
     // check last three letters to compare to account type constants
     return username.slice(-3);
-  };
+  }, []);
 
   const leaveCall = useCallback(() => {
     if (!callFrame) return;
@@ -206,11 +206,11 @@ export const CallProvider = ({ children }) => {
     leaveCall();
   }, [participants, removeFromCall, leaveCall]);
 
-  const displayName = (username) => {
+  const displayName = useCallback((username) => {
     if (!username) return;
     // return name without account type
     return username.slice(0, username.length - 4);
-  };
+  }, []);
 
   const updateUsername = useCallback(
     (newAccountType) => {
@@ -353,6 +353,8 @@ export const CallProvider = ({ children }) => {
           case FORCE_EJECT:
             //seeya
             leaveCall();
+            break;
+          default:
             break;
         }
       } catch (e) {
